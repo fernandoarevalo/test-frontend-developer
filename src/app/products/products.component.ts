@@ -8,7 +8,10 @@ import { ProductService } from "../product.service";
 })
 export class ProductsComponent implements OnInit {
 
-  private data: any;
+  private categories: any;
+  private products: Array<Object>;
+  isDesc: boolean = false;
+  column: string = '';
 
   constructor(private productService: ProductService) { }
 
@@ -17,8 +20,29 @@ export class ProductsComponent implements OnInit {
   }
 
   getJSON(): any {
-    this.productService.getJSON()
-      .subscribe(data => this.data = data);
+    this.productService.getJSON().subscribe(data => {
+      this.categories = data.categories;
+      this.products = data.products;
+    });
   }
+
+  sort(property){
+    this.isDesc = !this.isDesc;
+    this.column = property;
+    let direction = this.isDesc ? 1 : -1;
+
+    this.products.sort(function(a, b){
+        if(a[property] < b[property]){
+            return -1 * direction;
+        }
+        else if( a[property] > b[property]){
+            return 1 * direction;
+        }
+        else{
+            return 0;
+        }
+    });
+};
+
 
 }
