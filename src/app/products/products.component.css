@@ -11,6 +11,16 @@ a {
     color: white;
 }
 
+.notify {
+    background: crimson;
+    color: white;
+    position: absolute;
+    left: 20px;
+    width: 15px;
+    height: 15px;
+    padding: 4px !important;
+}
+
 .github-button {
     display: none;
 }

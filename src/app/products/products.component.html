@@ -5,10 +5,17 @@
     <span class="spacer"></span>
     <button mat-icon-button [matMenuTriggerFor]="menu">
       <mat-icon>shopping_cart</mat-icon>
+      <mat-chip color="warn" class="notify" *ngIf="notification > 0">{{notification}}</mat-chip>
     </button>
     <mat-menu #menu="matMenu">
-      <button mat-menu-item>Item 1</button>
-      <button mat-menu-item>Item 2</button>
+      <mat-list>
+        <h3 mat-subheader *ngIf="notification > 0">Products</h3>
+        <h3 mat-subheader *ngIf="notification <= 0">Shopping cart empty</h3>
+        <button *ngFor="let product of shoppingCart" mat-menu-item (click)="openDialog()">
+          <mat-icon color="warn" mat-list-icon>add_shopping_cart</mat-icon>
+          {{product.name}}
+        </button>
+      </mat-list>
     </mat-menu>
     <a href="https://github.com/fernandoarevalo/test-frontend-developer">
       <i class="fab fa-github"></i>
@@ -68,7 +75,7 @@
 
         </mat-card-content>
         <mat-card-actions align="start">
-          <button mat-button color="primary">
+          <button mat-button color="primary" (click)="addShoppingCart(product)">
             <mat-icon>add_shopping_cart</mat-icon>
             ADD SHOPPING CART
           </button>

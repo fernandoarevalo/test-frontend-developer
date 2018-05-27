@@ -1,0 +1,49 @@
+<table class="bordered responsive-table">
+  <thead>
+    <tr>
+      <th></th>
+      <th>No.</th>
+      <th>Name</th>
+      <th>Price</th>
+      <th>Avalible</th>
+      <th>Best seller</th>
+      <th>Categories</th>
+      <th>Description</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr *ngFor="let product of productsShoppingCart | orderBy: {property: column, direction: direction} ; let i = index">
+      <td>
+        <img mat-card-avatar src="{{product.img}}" alt="{{product.name}}">
+      </td>
+      <td>
+        {{product.id}}
+      </td>
+      <td>{{product.name}}</td>
+      <td>{{product.price}}</td>
+      <td>{{product.avalible}}</td>
+      <td>
+        <mat-chip-list *ngIf="product.best_seller">
+          <mat-chip color="accent" selected="true">
+            <mat-icon>start</mat-icon>
+            <span>Best seller</span>
+          </mat-chip>
+        </mat-chip-list>
+      </td>
+      <td>
+        <span *ngFor="let category of product.categories">
+          {{data.categories[category - 1].name}}
+        </span>
+      </td>
+      <td>{{product.description}}</td>
+      <td>
+        <button mat-button color="primary" (click)="removeShoppingCart(product, i)">
+          <mat-icon>remove_shopping_cart</mat-icon>
+          REMOVE
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>

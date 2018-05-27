@@ -5,13 +5,16 @@ import { HttpModule } from '@angular/http';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatChipsModule } from '@angular/material/chips';
+import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSelectModule } from '@angular/material/select';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { StorageServiceModule } from "angular-webstorage-service";
 
 
 
@@ -19,13 +22,15 @@ import { AppComponent } from './app.component';
 import { ProductsComponent } from './products/products.component';
 import { ProductService } from "./product.service";
 import { FilterPipe, OrderByPipe } from "./products.pipe";
+import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     FilterPipe,
     OrderByPipe,
-    ProductsComponent
+    ProductsComponent,
+    ShoppingCartComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -35,16 +40,24 @@ import { FilterPipe, OrderByPipe } from "./products.pipe";
     MatButtonModule,
     MatCardModule,
     MatChipsModule,
+    MatDialogModule,
     MatIconModule,
     MatInputModule,
     MatListModule,
     MatMenuModule,
     MatSelectModule,
-    MatToolbarModule
+    MatSnackBarModule,
+    MatToolbarModule,
+    StorageServiceModule
   ],
   providers: [
     ProductService
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [
+    AppComponent
+  ],
+  entryComponents : [
+    ShoppingCartComponent
+  ]
 })
 export class AppModule { }
