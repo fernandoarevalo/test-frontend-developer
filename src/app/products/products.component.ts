@@ -24,21 +24,4 @@ export class ProductsComponent implements OnInit {
       this.products = data.products;
     });
   }
-
-  sort(property, _pIsDesc) {
-    this.column = property;
-    let direction = _pIsDesc ? 1 : -1;
-
-    this.products.sort(function (a, b) {
-      if (a[property].toLowerCase() < b[property].toLowerCase()) {
-        return -1 * direction;
-      }
-      else if (a[property].toLowerCase() > b[property].toLowerCase()) {
-        return 1 * direction;
-      }
-      else {
-        return 0;
-      }
-    });
-  };
 }

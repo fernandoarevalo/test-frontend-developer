@@ -1,8 +1,15 @@
 <mat-toolbar color="primary">
   <mat-toolbar-row>
     <i class="fab fa-angular"></i>
-    <span>Test FrontEnd Developer</span>
+    <span>FrontEnd Developer</span>
     <span class="spacer"></span>
+    <button mat-icon-button [matMenuTriggerFor]="menu">
+      <mat-icon>shopping_cart</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item>Item 1</button>
+      <button mat-menu-item>Item 2</button>
+    </mat-menu>
     <a href="https://github.com/fernandoarevalo/test-frontend-developer">
       <i class="fab fa-github"></i>
       <span class="github-button">GitHub</span>
@@ -14,10 +21,10 @@
   <mat-card>
     <div class="filters">
       <mat-form-field class="filters-form-fields">
-        <mat-select placeholder="Sort products" name="sp">
-          <mat-option selected (click)="sort('name', true)">Name</mat-option>
-          <mat-option (click)="sort('price', false)">Higher price</mat-option>
-          <mat-option (click)="sort('price', true)">Lower price</mat-option>
+        <mat-select placeholder="Sort products" name="sp" [(ngModel)]="orderByProd">
+          <mat-option [value]="'name'">Name</mat-option>
+          <mat-option [value]="'higherPrice'">Higher price</mat-option>
+          <mat-option [value]="'lowerPrice'">Lower price</mat-option>
         </mat-select>
       </mat-form-field>
     </div>
@@ -44,7 +51,7 @@
     <input matInput name="term" [(ngModel)]="product" placeholder="Filter by product name">
 
     <div class="container">
-      <mat-card class="products" *ngFor="let product of products | filter : {field: 'name', product: product } | filter : {field: 'categories', product: productCategory } | filter : {field: 'available', product: productAvailable } | filter : {field: 'best_seller', product: productBestSeller } | orderBy: {property: column, direction: direction}">
+      <mat-card class="products" *ngFor="let product of products | filter : {field: 'name', product: product } | filter : {field: 'categories', product: productCategory } | filter : {field: 'available', product: productAvailable } | filter : {field: 'best_seller', product: productBestSeller } | orderBy: {property: orderByProd}">
         <mat-card-title-group>
           <mat-card-title>{{product.name}}</mat-card-title>
           <mat-card-title>{{product.price}}</mat-card-title>
@@ -60,9 +67,11 @@
           </mat-chip-list>
 
         </mat-card-content>
-        <mat-card-actions>
-          <!--button mat-button>LIKE</button>
-                <button mat-button>SHARE</button-->
+        <mat-card-actions align="start">
+          <button mat-button color="primary">
+            <mat-icon>add_shopping_cart</mat-icon>
+            ADD SHOPPING CART
+          </button>
         </mat-card-actions>
       </mat-card>
     </div>

@@ -31,18 +31,28 @@ export class FilterPipe implements PipeTransform {
 export class OrderByPipe implements PipeTransform {
 
     transform(products: any[], args?: any): any {
-        return products
-            ? products.sort(function (a, b) {
-                if (a[args.property] < b[args.property]) {
-                    return -1 * args.direction;
-                }
-                else if (a[args.property] > b[args.property]) {
-                    return 1 * args.direction;
-                }
-                else {
-                    return 0;
-                }
-            })
-            : products;
+        if (!args.property) {
+            return products;
+        }
+        if (args.property === 'name') {
+            args.direction = true;
+        } else if (args.property === 'higherPrice') {
+            args.property = 'price';
+            args.direction = true;
+        } else {
+            args.property = 'price';
+            args.direction = false;
+        }
+        return products.sort(function (a, b) {
+            if (a[args.property].toLowerCase() < b[args.property].toLowerCase()) {
+                return -1 * args.direction;
+            }
+            else if (a[args.property].toLowerCase() > b[args.property].toLowerCase()) {
+                return 1 * args.direction;
+            }
+            else {
+                return 0;
+            }
+        });
     };
 }
