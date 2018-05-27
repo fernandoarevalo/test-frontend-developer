@@ -8,46 +8,78 @@
 
 <section>
   <mat-card>
-    <input matInput name="term" [(ngModel)]="product" placeholder="Filter">
-    <table class="bordered responsive-table">
-      <thead>
-        <tr>
-          <th></th>
-          <th>No.</th>
-          <!--th>Name</th-->
-          <th class="pointer" (click)="sort('name')">
-            Name
-            <i class="fas" [ngClass]="{'fa-sort': column != 'name', 'fa-sort-up': (column == 'name' && !isDesc), 'fa-sort-down': (column == 'name' && isDesc) }"
-              aria-hidden="true"> </i>
-          </th>
-          <th class="pointer" (click)="sort('price')">
-            Price
-            <i class="fas" [ngClass]="{'fa-sort': column != 'price', 'fa-sort-up': (column == 'price' && !isDesc), 'fa-sort-down': (column == 'price' && isDesc) }"
-              aria-hidden="true"> </i>
-          </th>
-          <th>Avalible</th>
-          <th>Best seller</th>
-          <th>Categories</th>
-          <th>Description</th>
-        </tr>
-      </thead>
+    <div>
+      <input matInput name="term" [(ngModel)]="product" placeholder="Filter by product name">
+      <mat-form-field>
+        <mat-select placeholder="Category" [(value)]="selected">
+          <mat-option>None</mat-option>
+          <mat-option *ngFor="let category of categories" [value]="category.categori_id">
+            {{ category.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="container">
+      <!--table class="bordered responsive-table">
+              <thead>
+                <tr>
+                  <th></th>
+                  <th>No.</th>
+                  <th class="pointer" (click)="sort('name')">
+                    Name
+                    <i class="fas" [ngClass]="{'fa-sort': column != 'name', 'fa-sort-up': (column == 'name' && !isDesc), 'fa-sort-down': (column == 'name' && isDesc) }"
+                      aria-hidden="true"> </i>
+                  </th>
+                  <th class="pointer" (click)="sort('price')">
+                    Price
+                    <i class="fas" [ngClass]="{'fa-sort': column != 'price', 'fa-sort-up': (column == 'price' && !isDesc), 'fa-sort-down': (column == 'price' && isDesc) }"
+                      aria-hidden="true"> </i>
+                  </th>
+                  <th>Avalible</th>
+                  <th>Best seller</th>
+                  <th>Categories</th>
+                  <th>Description</th>
+                </tr>
+              </thead>
+        
+              <tbody>
+                <tr *ngFor="let product of products | filter : product | orderBy: {property: column, direction: direction}">
+                  <td>
+                    <img mat-card-avatar src="{{product.img}}" alt="{{product.name}}">
+                  </td>
+                  <td>
+                    {{product.id}}
+                  </td>
+                  <td>{{product.name}}</td>
+                  <td>{{product.price}}</td>
+                  <td>{{product.avalible}}</td>
+                  <td>{{product.best_seller}}</td>
+                  <td>{{product.categories}}</td>
+                  <td>{{product.description}}</td>
+                </tr>
+              </tbody>
+            </table-->
 
-      <tbody>
-        <tr *ngFor="let product of products | filter : product | orderBy: {property: column, direction: direction}">
-          <td>
-            <img mat-card-avatar src="{{product.img}}" alt="{{product.name}}">
-          </td>
-          <td>
-            {{product.id}}
-          </td>
-          <td>{{product.name}}</td>
-          <td>{{product.price}}</td>
-          <td>{{product.avalible}}</td>
-          <td>{{product.best_seller}}</td>
-          <td>{{product.categories}}</td>
-          <td>{{product.description}}</td>
-        </tr>
-      </tbody>
-    </table>
+      <mat-card class="products" *ngFor="let product of products | filter : product | orderBy: {property: column, direction: direction}">
+        <mat-card-title-group>
+          <mat-card-title>{{product.name}}</mat-card-title>
+          <mat-card-subtitle>{{product.price}}</mat-card-subtitle>
+          <img mat-card-sm-image src="{{product.img}}">
+        </mat-card-title-group>
+        <mat-card-content>
+          <p>{{product.description}}</p>
+          <p *ngIf="!product.available" class="not-available">Not available</p>
+          <mat-chip-list *ngIf="product.best_seller">
+            <mat-chip color="accent" selected="true">
+              <mat-icon>start</mat-icon>Best seller</mat-chip>
+          </mat-chip-list>
+
+        </mat-card-content>
+        <mat-card-actions>
+          <!--button mat-button>LIKE</button>
+                <button mat-button>SHARE</button-->
+        </mat-card-actions>
+      </mat-card>
+    </div>
   </mat-card>
 </section>

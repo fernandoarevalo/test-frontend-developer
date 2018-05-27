@@ -8,10 +8,10 @@ import { ProductService } from "../product.service";
 })
 export class ProductsComponent implements OnInit {
 
-  private categories: any;
+  private categories: Array<Object>;
   private products: Array<Object>;
-  isDesc: boolean = false;
-  column: string = '';
+  private column: string = '';
+  private isDesc: boolean = false;
 
   constructor(private productService: ProductService) { }
 

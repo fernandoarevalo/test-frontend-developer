@@ -11,15 +11,6 @@ export class FilterPipe implements PipeTransform {
             : products;
     }
 }
-/*
-@Pipe({
-    name: 'sortBy'
-})
-export class SortByPipe implements PipeTransform {
-    transform(products: any[], sortedBy: string): any {
-        return products.sort((a, b) => {return b[sortedBy] - a[sortedBy]});
-    }
-}*/
 
 @Pipe({ name: 'orderBy' })
 export class OrderByPipe implements PipeTransform {
