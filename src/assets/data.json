@@ -21,7 +21,7 @@
         {
             "id": 1,
             "name": "Lorem",
-            "price": "60.000",
+            "price": 60000,
             "available": true,
             "best_seller": true,
             "categories": [
@@ -34,7 +34,7 @@
         {
             "id": 2,
             "name": "ipsum",
-            "price": "20.000",
+            "price": 20000,
             "available": false,
             "best_seller": false,
             "categories": [
@@ -46,7 +46,7 @@
         {
             "id": 3,
             "name": "dolor",
-            "price": "10.000",
+            "price": 10000,
             "available": true,
             "best_seller": true,
             "categories": [
@@ -58,7 +58,7 @@
         {
             "id": 4,
             "name": "sit",
-            "price": "35.000",
+            "price": 35.000,
             "available": false,
             "best_seller": false,
             "categories": [
@@ -71,7 +71,7 @@
         {
             "id": 5,
             "name": "amet",
-            "price": "12.000",
+            "price": 12.000,
             "available": true,
             "best_seller": true,
             "categories": [
@@ -84,7 +84,7 @@
         {
             "id": 6,
             "name": "consectetur",
-            "price": "120.000",
+            "price": 120.000,
             "available": true,
             "best_seller": false,
             "categories": [
@@ -97,7 +97,7 @@
         {
             "id": 7,
             "name": "adipiscing",
-            "price": "50.000",
+            "price": 50.000,
             "available": false,
             "best_seller": false,
             "categories": [
@@ -110,7 +110,7 @@
         {
             "id": 8,
             "name": "elit",
-            "price": "2000",
+            "price": 2000,
             "available": true,
             "best_seller": false,
             "categories": [
@@ -123,7 +123,7 @@
         {
             "id": 9,
             "name": "Maecenas",
-            "price": "150.000",
+            "price": 150.000,
             "available": true,
             "best_seller": true,
             "categories": [
@@ -136,7 +136,7 @@
         {
             "id": 10,
             "name": "eu",
-            "price": "200.000",
+            "price": 200.000,
             "available": false,
             "best_seller": true,
             "categories": [

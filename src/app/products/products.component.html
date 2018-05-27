@@ -58,7 +58,7 @@
     <input matInput name="term" [(ngModel)]="product" placeholder="Filter by product name">
 
     <div class="container">
-      <mat-card class="products" *ngFor="let product of products | filter : {field: 'name', product: product } | filter : {field: 'categories', product: productCategory } | filter : {field: 'available', product: productAvailable } | filter : {field: 'best_seller', product: productBestSeller } | orderBy: {property: orderByProd}">
+      <mat-card class="products" *ngFor="let product of products | filter : { field: 'name', product: product } | filter : { field: 'categories', product: productCategory } | filter : { field: 'available', product: productAvailable } | filter : { field: 'best_seller', product: productBestSeller } | orderBy: { property: orderByProd }">
         <mat-card-title-group>
           <mat-card-title>{{product.name}}</mat-card-title>
           <mat-card-title>{{product.price}}</mat-card-title>

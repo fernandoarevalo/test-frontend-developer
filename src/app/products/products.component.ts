@@ -17,26 +17,45 @@ export class ProductsComponent implements OnInit {
   private products: Array<Object>;
   private column: string = '';
 
+  /**
+   * ProductsComponent constructor
+   * @param snackBar 
+   * @param dialog 
+   * @param storage 
+   * @param productService 
+   */
   constructor(public snackBar: MatSnackBar,
     public dialog: MatDialog,
     @Inject(LOCAL_STORAGE) private storage: WebStorageService,
     private productService: ProductService) {
   }
 
+  /**
+   * NgOnInit implementation
+   */
   ngOnInit() {
     this.getJSON();
     this.findProductsShoppingCart();
     this.findCatnProductsShoppingCart();
   }
 
+  /**
+   * Find products in the storage
+   */
   findProductsShoppingCart() {
     this.shoppingCart = this.storage.get('products')  ? this.storage.get('products') : [];
   }
 
+  /**
+   * Count products in the storage
+   */
   findCatnProductsShoppingCart() {
     this.notification = this.storage.get('products') ? this.storage.get('products').length : 0;
   }
 
+  /**
+   * Load JSON file
+   */
   getJSON(): any {
     this.productService.getJSON().subscribe(data => {
       this.categories = data.categories;
@@ -44,6 +63,10 @@ export class ProductsComponent implements OnInit {
     });
   }
 
+  /**
+   * Add new products in the storage
+   * @param _pProduct 
+   */
   addShoppingCart(_pProduct: any) {
     this.shoppingCart.push(_pProduct);
     this.storage.set('products', this.shoppingCart);
@@ -51,12 +74,20 @@ export class ProductsComponent implements OnInit {
     this.findCatnProductsShoppingCart();
   }
 
+  /**
+   * Show confirm message
+   * @param _pMessage 
+   * @param _pAction 
+   */
   openSnackBar(_pMessage: string, _pAction: string) {
     this.snackBar.open(_pMessage, _pAction, {
       duration: 500,
     });
   }
 
+  /**
+   * This function allow show dialog
+   */
   openDialog(): void {
     let dialogRef = this.dialog.open(ShoppingCartComponent, {
       data: { categories: this.categories }

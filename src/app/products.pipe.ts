@@ -1,5 +1,8 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
+/**
+ * Filter pipe by Name, avaible or best seller
+ */
 @Pipe({
     name: 'filter',
     pure: false
@@ -27,7 +30,13 @@ export class FilterPipe implements PipeTransform {
     }
 }
 
-@Pipe({ name: 'orderBy' })
+/**
+ * Order by products by Name and price
+ */
+@Pipe({ 
+    name: 'orderBy',
+    pure: false
+})
 export class OrderByPipe implements PipeTransform {
 
     transform(products: any[], args?: any): any {
@@ -38,17 +47,22 @@ export class OrderByPipe implements PipeTransform {
             args.direction = true;
         } else if (args.property === 'higherPrice') {
             args.property = 'price';
-            args.direction = true;
+            args.direction = false;
         } else {
             args.property = 'price';
-            args.direction = false;
+            args.direction = true;
         }
+
         return products.sort(function (a, b) {
-            if (a[args.property].toLowerCase() < b[args.property].toLowerCase()) {
-                return -1 * args.direction;
+            if (args.property === 'name') {
+                a[args.property] = a[args.property].toLowerCase();
+                b[args.property] = b[args.property].toLowerCase();
             }
-            else if (a[args.property].toLowerCase() > b[args.property].toLowerCase()) {
-                return 1 * args.direction;
+            if (a[args.property] < b[args.property]) {
+                return -1;
+            }
+            else if (a[args.property] > b[args.property]) {
+                return 1;
             }
             else {
                 return 0;
