@@ -1,69 +1,54 @@
 <mat-toolbar color="primary">
   <mat-toolbar-row>
+    <i class="fab fa-angular"></i>
     <span>Test FrontEnd Developer</span>
-    <span class="example-spacer"></span>
-    <!--mat-icon class="example-icon">home</mat-icon-->
+    <span class="spacer"></span>
+    <a href="https://github.com/fernandoarevalo/test-frontend-developer">
+      <i class="fab fa-github"></i>
+      <span class="github-button">GitHub</span>
+    </a>
   </mat-toolbar-row>
 </mat-toolbar>
 
 <section>
   <mat-card>
-    <div>
-      <input matInput name="term" [(ngModel)]="product" placeholder="Filter by product name">
-      <mat-form-field>
-        <mat-select placeholder="Category" [(value)]="selected">
+    <div class="filters">
+      <mat-form-field class="filters-form-fields">
+        <mat-select placeholder="Sort products" name="sp">
+          <mat-option selected (click)="sort('name', true)">Name</mat-option>
+          <mat-option (click)="sort('price', false)">Higher price</mat-option>
+          <mat-option (click)="sort('price', true)">Lower price</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="filters">
+      <mat-form-field class="filters-form-fields">
+        <mat-select placeholder="Category" name="cat" [(ngModel)]="productCategory">
           <mat-option>None</mat-option>
           <mat-option *ngFor="let category of categories" [value]="category.categori_id">
             {{ category.name }}
           </mat-option>
         </mat-select>
       </mat-form-field>
+      <mat-form-field class="filters-form-fields">
+        <mat-select placeholder="Others filters" name="pa" [(ngModel)]="productAvailable">
+          <mat-option>None</mat-option>
+          <mat-option [value]="true">Avaible</mat-option>
+          <mat-option [value]="'false'">Not avaible</mat-option>
+          <mat-option [value]="'best_seller'">Best seller</mat-option>
+        </mat-select>
+      </mat-form-field>
     </div>
-    <div class="container">
-      <!--table class="bordered responsive-table">
-              <thead>
-                <tr>
-                  <th></th>
-                  <th>No.</th>
-                  <th class="pointer" (click)="sort('name')">
-                    Name
-                    <i class="fas" [ngClass]="{'fa-sort': column != 'name', 'fa-sort-up': (column == 'name' && !isDesc), 'fa-sort-down': (column == 'name' && isDesc) }"
-                      aria-hidden="true"> </i>
-                  </th>
-                  <th class="pointer" (click)="sort('price')">
-                    Price
-                    <i class="fas" [ngClass]="{'fa-sort': column != 'price', 'fa-sort-up': (column == 'price' && !isDesc), 'fa-sort-down': (column == 'price' && isDesc) }"
-                      aria-hidden="true"> </i>
-                  </th>
-                  <th>Avalible</th>
-                  <th>Best seller</th>
-                  <th>Categories</th>
-                  <th>Description</th>
-                </tr>
-              </thead>
-        
-              <tbody>
-                <tr *ngFor="let product of products | filter : product | orderBy: {property: column, direction: direction}">
-                  <td>
-                    <img mat-card-avatar src="{{product.img}}" alt="{{product.name}}">
-                  </td>
-                  <td>
-                    {{product.id}}
-                  </td>
-                  <td>{{product.name}}</td>
-                  <td>{{product.price}}</td>
-                  <td>{{product.avalible}}</td>
-                  <td>{{product.best_seller}}</td>
-                  <td>{{product.categories}}</td>
-                  <td>{{product.description}}</td>
-                </tr>
-              </tbody>
-            </table-->
 
-      <mat-card class="products" *ngFor="let product of products | filter : product | orderBy: {property: column, direction: direction}">
+    <input matInput name="term" [(ngModel)]="product" placeholder="Filter by product name">
+
+    <div class="container">
+      <mat-card class="products" *ngFor="let product of products | filter : {field: 'name', product: product } | filter : {field: 'categories', product: productCategory } | filter : {field: 'available', product: productAvailable } | filter : {field: 'best_seller', product: productBestSeller } | orderBy: {property: column, direction: direction}">
         <mat-card-title-group>
           <mat-card-title>{{product.name}}</mat-card-title>
-          <mat-card-subtitle>{{product.price}}</mat-card-subtitle>
+          <mat-card-title>{{product.price}}</mat-card-title>
+          <mat-card-subtitle *ngFor="let category of product.categories">{{categories[category - 1].name}}</mat-card-subtitle>
           <img mat-card-sm-image src="{{product.img}}">
         </mat-card-title-group>
         <mat-card-content>

@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatIconModule } from '@angular/material/icon';
@@ -30,6 +31,7 @@ import { FilterPipe, OrderByPipe } from "./products.pipe";
     BrowserModule,
     FormsModule,
     HttpModule,
+    MatButtonModule,
     MatCardModule,
     MatChipsModule,
     MatIconModule,

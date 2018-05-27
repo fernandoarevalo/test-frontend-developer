@@ -11,7 +11,6 @@ export class ProductsComponent implements OnInit {
   private categories: Array<Object>;
   private products: Array<Object>;
   private column: string = '';
-  private isDesc: boolean = false;
 
   constructor(private productService: ProductService) { }
 
@@ -26,23 +25,20 @@ export class ProductsComponent implements OnInit {
     });
   }
 
-  sort(property){
-    this.isDesc = !this.isDesc;
+  sort(property, _pIsDesc) {
     this.column = property;
-    let direction = this.isDesc ? 1 : -1;
+    let direction = _pIsDesc ? 1 : -1;
 
-    this.products.sort(function(a, b){
-        if(a[property] < b[property]){
-            return -1 * direction;
-        }
-        else if( a[property] > b[property]){
-            return 1 * direction;
-        }
-        else{
-            return 0;
-        }
+    this.products.sort(function (a, b) {
+      if (a[property].toLowerCase() < b[property].toLowerCase()) {
+        return -1 * direction;
+      }
+      else if (a[property].toLowerCase() > b[property].toLowerCase()) {
+        return 1 * direction;
+      }
+      else {
+        return 0;
+      }
     });
-};
-
-
+  };
 }

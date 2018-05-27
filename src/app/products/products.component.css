@@ -1,12 +1,28 @@
-.sidenav {
-    box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
-    width: 290px;
-    padding: 25px;
-}
-
 section {
     max-width: 920px;
     margin: 60px auto;
+}
+
+i {
+    margin-right: 8px;
+}
+
+a {
+    color: white;
+}
+
+.github-button {
+    display: none;
+}
+
+.filters {
+    display: flex;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+}
+
+.filters-form-fields {
+    width: 50%;
 }
 
 .container {
@@ -15,38 +31,38 @@ section {
     min-width: 300px;
     width: 100%;
 }
-  
-.table {
-    overflow: auto;
-    max-height: 500px;
-}
-
-.example-icon {
-    padding: 0 14px;
-}
-  
-.example-spacer {
+    
+.spacer {
     flex: 1 1 auto;
-}
-
-.example-header {
-    min-height: 64px;
-    padding: 8px 24px 0;
 }
   
 .mat-form-field {
     font-size: 14px;
 }
 
-.pointer{
+.pointer {
     cursor: pointer;
 }
 
 mat-card.products {
-    max-width: 250px;
     margin: 0 20px 20px 0;
 }
 
 .not-available {
     color: rgb(244, 67, 54);
+}
+
+@media only screen and (min-width: 600px){
+    .filters-form-fields {
+        width: initial;
+    }
+    
+    .github-button {
+        display: initial;
+    }
+
+    mat-card.products {
+        max-width: 250px;
+        margin: 0 20px 20px 0;
+    }
 }
