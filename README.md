@@ -1,5 +1,4 @@
-# test-frontend-developer
-## Test FrontEnd Developer
+# Test FrontEnd Developer
 <a target="_blank" href="https://test-fe.herokuapp.com/">Live Test</a>
 
 ### IDEs 
@@ -19,5 +18,6 @@
 - angular/cdk@5.2.4
 - angular-webstorage-service@1.0.2
 
-Fernando Arévalo
+
+### Fernando Arévalo
 Software developer
